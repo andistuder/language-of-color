@@ -32,4 +32,10 @@ group :development, :test do
   gem 'spring'
 end
 
+group :test do
+  gem 'rspec-rails'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+end
+
 gem 'rails_12factor', group: :production
