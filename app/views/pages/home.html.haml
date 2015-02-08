@@ -7,12 +7,4 @@
 %p
   = "The time is now: #{Time.now}"
 %hr
-%h2
-  Sample Form
-%form
-  .form-group
-    %label{:for => "exampleInputEmail1"} Email address
-    %input#exampleInputEmail1.form-control{:placeholder => "Enter email", :type => "email"}
-  %button.btn.btn-primary
-    Submit
-%hr
+= link_to 'Register as a member', new_member_path, {class: 'btn btn-primary'}

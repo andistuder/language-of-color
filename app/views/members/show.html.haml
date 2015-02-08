@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b First name:
+  = @member.first_name
+%p
+  %b Last name:
+  = @member.last_name
+%p
+  %b Title:
+  = @member.title
+%p
+  %b Country of residence:
+  = @member.country_of_residence
+%p
+  %b Job title:
+  = @member.job_title
+%p
+  %b Organisation:
+  = @member.organisation
+%p
+  %b Link:
+  = @member.link
+%p
+  %b Email:
+  = @member.email
+
+= link_to 'Edit', edit_member_path(@member)
+\|
+= link_to 'Back', members_path

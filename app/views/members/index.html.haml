@@ -1,0 +1,35 @@
+%h1 Listing members
+
+%table.table
+  %thead
+    %tr
+      %th First name
+      %th Last name
+      %th Title
+      %th Country of residence
+      %th Job title
+      %th Organisation
+      %th Link
+      %th Email
+      %th
+      %th
+      %th
+
+  %tbody
+    - @members.each do |member|
+      %tr
+        %td= member.first_name
+        %td= member.last_name
+        %td= member.title
+        %td= member.country_of_residence
+        %td= member.job_title
+        %td= member.organisation
+        %td= member.link
+        %td= member.email
+        %td= link_to 'Show', member
+        %td= link_to 'Edit', edit_member_path(member)
+        %td= link_to 'Destroy', member, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'Register as a member', new_member_path, {class: 'btn btn-primary'}
