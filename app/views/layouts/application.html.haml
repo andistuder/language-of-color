@@ -38,7 +38,7 @@
           %ul.nav.navbar-nav
             %li= link_to "About", "/about"
             %li= link_to "Members", "/members"
-            %li= link_to "Bibliography", "/#"
+            %li= link_to "Bibliography", "/bibliography"
             %li= link_to "Data", "/#"
             %li= link_to "Contact", "#"
             %li= current_member.present? ? link_to("Log out", destroy_member_session_path, method: :delete) : link_to('Log in', new_member_session_path)
