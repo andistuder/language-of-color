@@ -9,6 +9,7 @@ gem 'haml-rails'
 gem 'jquery-rails', '~> 4.0.3'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
+gem 'rails_admin', '~> 0.6.6'
 gem "twitter-bootstrap-rails"
 gem 'unicorn'
 
