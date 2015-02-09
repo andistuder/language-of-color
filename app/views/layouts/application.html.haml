@@ -41,7 +41,8 @@
             %li= link_to "Bibliography", "/#"
             %li= link_to "Data", "/#"
             %li= link_to "Contact", "#"
-            %li= link_to "Log out", destroy_member_session_path, method: :delete
+            %li= current_member.present? ? link_to("Log out", destroy_member_session_path, method: :delete) : link_to('Log in', new_member_session_path)
+            %li= link_to("Edit my details", edit_member_registration_path) if current_member.present?
     .container
       .row
         .col-lg-9

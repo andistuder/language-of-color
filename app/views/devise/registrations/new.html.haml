@@ -1,21 +1,42 @@
+
 %h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = devise_error_messages!
-  .field.form-group
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, class: 'form-control'
-  .field.form-group
-    = f.label :password
-    - if @validatable
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "off", class: 'form-control'
-  .field.form-group
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
-  .actions
-    = f.submit "Sign up", class: 'btn btn-primary'
+.row
+  .col-lg-7
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = devise_error_messages!
+      .field.form-group
+        = f.label :email
+        = f.email_field :email, autofocus: true, class: 'form-control', required: "required"
+      .field.form-group
+        = f.label :first_name
+        = f.text_field :first_name, {class: 'form-control'}
+      .field.form-group
+        = f.label :last_name
+        = f.text_field :last_name, {class: 'form-control'}
+      .field.form-group
+        = f.label :title
+        = f.text_field :title, {class: 'form-control'}
+      .field.form-group
+        = f.label :country_of_residence
+        = f.country_select :country_of_residence, nil, {}, {class: 'form-control'}
+      .field.form-group
+        = f.label :job_title
+        = f.text_field :job_title, {class: 'form-control'}
+      .field.form-group
+        = f.label :organisation
+        = f.text_field :organisation, {class: 'form-control'}
+      .field.form-group
+        = f.label :link
+        = f.text_field :link, {class: 'form-control'}
+      .field.form-group
+        = f.label :password
+        - if @validatable
+          %em
+            (#{@minimum_password_length} characters minimum)
+        = f.password_field :password, autocomplete: "off", class: 'form-control', required: "required"
+      .field.form-group
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', required: "required"
+      .actions
+        = f.submit "Sign up", class: 'btn btn-primary'
 = render "devise/shared/links"
