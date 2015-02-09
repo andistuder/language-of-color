@@ -4,6 +4,7 @@ ruby '2.2.0'
 gem 'rails', '4.2.0'
 
 gem 'country_select'
+gem 'devise'
 gem 'haml-rails'
 gem 'jquery-rails', '~> 4.0.3'
 gem 'pg'
