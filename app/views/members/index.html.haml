@@ -1,4 +1,27 @@
-%h1 Listing members
+%h1 Members Area
+
+%p Welcome to the Study Group Language of Colour (SGLC) Member's area of the International Color Association (AIC).
+
+%p Existing members can log in to the site and access contact details of other members, newsletters, details of meetings, articles, datasets and other resources.
+
+%p The membership is free and open to everyone. You can join us online by using the registration form or at the AIC meeting where we will be hosting an event.
+
+%p Your name and personal website (if any) will be open to the public but your contact details will be only available to existing members.
+
+%p You can also find SGLC on #{ link_to('Facebook', '#')} or follow us on #{ link_to 'Twitter', '#' }.
+
+%ul
+  %li The membership is free and open to everyone
+  %li Members can apply online or at the AIC meetings (Midterm & Congress)
+  %li Communication network; each member has access to the contact details of all members
+  %li Members’ commitment to sharing ideas and information
+  %li Sharing responsibility of developing the topic and adhering to the timeframe
+  %li Co-operation rather than competition
+  %li Attendance of SGLC meetings is open to anybody interested in this field
+
+= link_to 'Register as a member', new_member_registration_path, {class: 'btn btn-primary'} unless current_member.present?
+
+%h2 Current Members
 
 %table.table
   %thead
@@ -33,7 +56,3 @@
         / %td= link_to 'Show', member
         / %td= link_to 'Edit', edit_member_path(member)
         / %td= link_to 'Destroy', member, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'Register as a member', new_member_registration_path, {class: 'btn btn-primary'} unless current_member
