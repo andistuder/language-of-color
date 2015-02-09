@@ -27,7 +27,7 @@
         = f.text_field :organisation, {class: 'form-control'}
       .field.form-group
         = f.label :link
-        = f.text_field :link, {class: 'form-control'}
+        = f.url_field :link, class: 'form-control', placeholder: "http://www.example.com"
       .field.form-group
         = f.label :password
         - if @validatable
