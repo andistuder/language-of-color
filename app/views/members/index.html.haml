@@ -7,13 +7,15 @@
       %th Last name
       %th Title
       %th Country of residence
-      %th Job title
-      %th Organisation
+      - if current_member.present?
+        %th Job title
+        %th Organisation
       %th Link
-      %th Email
-      %th
-      %th
-      %th
+      - if current_member.present?
+        %th Email
+      / %th
+      / %th
+      / %th
 
   %tbody
     - @members.each do |member|
@@ -22,13 +24,15 @@
         %td= member.last_name
         %td= member.title
         %td= member.country_of_residence
-        %td= member.job_title
-        %td= member.organisation
+        - if current_member.present?
+          %td= member.job_title
+          %td= member.organisation
         %td= member.link
-        %td= member.email
-        %td= link_to 'Show', member
-        %td= link_to 'Edit', edit_member_path(member)
-        %td= link_to 'Destroy', member, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        - if current_member.present?
+          %td= member.email
+        / %td= link_to 'Show', member
+        / %td= link_to 'Edit', edit_member_path(member)
+        / %td= link_to 'Destroy', member, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

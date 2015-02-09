@@ -50,15 +50,18 @@
           = yield
         .col-lg-3
           .well.sidebar-nav
-            %h3 Sidebar
-            %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li= link_to "Link1", "/path1"
-              %li= link_to "Link2", "/path2"
-              %li= link_to "Link3", "/path3"
-          / /.well
-        / /span
-      / /row
+            %h3 Membership
+            %p
+              Members of
+              %strong The Language of Color
+              study group can see each others full contact details. They also get priviledged access to publication and data sets.
+            %p= link_to 'Register now', new_member_registration_path, {class: 'btn btn-primary'} unless current_member
+            %p It's free.
+
+            / %ul.nav.nav-list
+            /   %li.nav-header Sidebar
+            /   %li= link_to "Link1", "/path1"
+            /   %li= link_to "Link2", "/path2"
+            /   %li= link_to "Link3", "/path3"
       %footer
-        %p © The Language of Color 2015
-    / /container
+        %p &copy; The Language of Color 2015
