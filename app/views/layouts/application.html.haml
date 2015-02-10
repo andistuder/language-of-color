@@ -45,7 +45,7 @@
             %li= link_to("Edit my details", edit_member_registration_path) if current_member.present?
     .container
       .row
-        .col-lg-9
+        .col-lg-9.main-content-area
           = bootstrap_flash
           = yield
         .col-lg-3
