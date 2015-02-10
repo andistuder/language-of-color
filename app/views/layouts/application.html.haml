@@ -37,31 +37,48 @@
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
             %li= link_to "About", "/about"
+            %li= link_to "News", "/news"
             %li= link_to "Members", "/members"
             %li= link_to "Bibliography", "/bibliography"
-            %li= link_to "Data", "/#"
-            %li= link_to "Contact", "#"
+            %li= link_to "Data", "/data"
+            %li= link_to "Contact", "/contact"
             %li= current_member.present? ? link_to("Log out", destroy_member_session_path, method: :delete) : link_to('Log in', new_member_session_path)
             %li= link_to("Edit my details", edit_member_registration_path) if current_member.present?
     .container
       .row
-        .col-lg-9.main-content-area
+        .col-lg-8.main-content-area
           = bootstrap_flash
           = yield
-        .col-lg-3
-          .well.sidebar-nav
-            %h3 Membership
-            %p
-              Members of
-              %strong The Language of Color
-              study group can see each others full contact details. They also get priviledged access to publication and data sets.
-            %p= link_to 'Register now', new_member_registration_path, {class: 'btn btn-primary'} unless current_member
-            %p It's free.
+        .col-lg-4
+          .panel.panel-info
+            .panel-heading
+              %h4 Membership
+            .panel-body
+              %p
+                Members of
+                %strong The Language of Color
+                study group can see each others full contact details. They also get priviledged access to publication and data sets.
+              %p= link_to 'Register now', new_member_registration_path, {class: 'btn btn-primary'} unless current_member
+              %p It's free.
+          .panel.panel-info
+            .panel-heading
+              %h4
+                Twitter
+                %span.small
+                  = link_to "Follow us", '#'
+            .panel-body
+              %ul.list-unstyled#twitter
+                %li
+                  RT @andistuder: LFT #OffThePage a literary festival on music by @thewiremagazine @Qujunktions & @ArnolfiniArts http://t.co/0OpkTIxZQn
+                  .small 5 months ago from Hootsuite
+                %li
+                  RT @tweetsatthehub: 5 days until the #OneDayer - The Future of Independent Live Music, Tech & Finance. 12 Sept http://t.co/tCo9Ykhr2J
+                  .small 5 months ago from Hootsuite
+                %li
+                  Big ups to PoolLoop, festival for experimental instruments in Zurich 1-7 Jul http://t.co/INA9xFOzVE
+                  .small over 1 year ago from Hootsuite
+              %p
+                = link_to 'Follow us', '#', {class: 'btn btn-primary'} unless current_member
 
-            / %ul.nav.nav-list
-            /   %li.nav-header Sidebar
-            /   %li= link_to "Link1", "/path1"
-            /   %li= link_to "Link2", "/path2"
-            /   %li= link_to "Link3", "/path3"
       %footer
         %p &copy; The Language of Color 2015
