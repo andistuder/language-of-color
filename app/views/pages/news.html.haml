@@ -1,2 +1,23 @@
-%p Coming soon
-/ = image_tag 'colorful-background.jpg', size: "160x100"
+%h1 News
+%h3 Some announcement
+%p.small
+  = "Posted on #{Time.now.strftime('%F')}"
+%p
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse posuere diam quis lorem dignissim, sit amet ullamcorper lorem consequat.
+%p
+  Vivamus eu tincidunt leo. Nam arcu nisi, tempor eleifend nibh id, finibus laoreet dolor. Cras sed risus ut turpis lacinia pharetra. Vestibulum at enim sodales, varius turpis non, tempus velit.
+
+%h3 Another thing to say
+%p.small
+  = "Posted on #{Time.now.days_ago(3).strftime('%F')}"
+
+%p
+  Sed ornare luctus mauris. Maecenas lobortis tristique sem. Vivamus volutpat tortor nibh, eget gravida eros convallis in. Class aptent taciti sociosqu #{ link_to 'ad litora', '#'} torquent per conubia nostra, per inceptos himenaeos. Pellentesque molestie enim dolor, vel eleifend augue varius vitae. Cras cursus congue nunc consectetur posuere. Pellentesque blandit tellus sit amet dui faucibus iaculis. Vivamus id mi id libero malesuada fermentum ut at odio. Morbi consectetur egestas scelerisque."
+
+%h3 Old news
+%p.small
+  = "Posted on #{Time.now.days_ago(10).strftime('%F')}"
+%p
+  Integer at fermentum purus, non dignissim elit. Fusce ac orci erat. Cras iaculis sed erat ut egestas. Aenean sed volutpat nulla. Duis porttitor, lorem ut mattis mattis, arcu nulla ullamcorper augue, eget consequat felis ligula ac lacus. Fusce vel dictum erat. Praesent et viverra lacus. Sed fringilla mattis porta.
+
+%p << Pagination >>

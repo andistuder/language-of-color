@@ -1,2 +1,30 @@
-%p Coming soon
-/ = image_tag 'colorful-background.jpg', size: "160x100"
+%h1 Contact
+
+%p
+  %strong The Language of Color
+  %br
+  Some address
+  %br
+  London E17 7AZ
+
+%p= link_to 'some.email@colour.org', 'mailto:some.email@colour.org'
+%p= link_to 'Facebook group', '#'
+%p= link_to '@twitter', '#'
+%hr
+%h4 Drop us a line
+.row
+  .col-lg-6
+
+    %form#new_message{"accept-charset" => "UTF-8", :action => "/members/sign_in", :method => "post"}
+      .field.form-group
+        %label{:for => "member_email"} Email
+        %input#email.form-control{:autofocus => "autofocus", :name => "member[email]", :required => "required", :type => "email", :value => ""}/
+      .field.form-group
+        %label{:for => "member_password"} Message
+        %textarea#message.form-control{:autocomplete => "off", :name => "member[password]", :required => "required", :type => "text", rows: "3"}
+      .field.form-group
+        %input{:name => "member[remember_me]", :type => "hidden", :value => "0"}/
+        %input#member_remember_me{:name => "member[remember_me]", :type => "checkbox", :value => "1"}/
+        %label{:for => "member_remember_me"} Add me to your mailing list
+      .actions
+        %input.btn.btn-primary{:name => "commit", :type => "submit", :value => "Send"}/
