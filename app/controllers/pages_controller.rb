@@ -11,4 +11,6 @@ class PagesController < ApplicationController
   end
   def news
   end
+  def disclaimner
+  end
 end

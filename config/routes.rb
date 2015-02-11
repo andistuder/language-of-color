@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'bibliography' => 'pages#bibliography'
   get 'contact' => 'pages#contact'
   get 'data' => 'pages#data'
+  get 'disclaimer' => 'pages#disclaimer'
   get 'news' => 'pages#news'
 
   # Example of regular route:
