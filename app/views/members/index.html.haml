@@ -33,7 +33,7 @@
       %th Country
       - if current_member.present?
         / %th Job title
-        %th Organisation
+        / %th Organisation
       %th Link
       - if current_member.present?
         %th Email
@@ -50,7 +50,7 @@
         %td= member.country_of_residence
         - if current_member.present?
           / %td= member.job_title
-          %td= member.organisation
+          / %td= member.organisation
         %td
           - if member.link.present?
             %a{href: member.link, title: member.link, target: '_blank'}
