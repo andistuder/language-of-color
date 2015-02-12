@@ -79,6 +79,8 @@
                   .small over 1 year ago from Hootsuite
               %p
                 = link_to 'Follow us', '#', {class: 'btn btn-primary'} unless current_member
-
       %footer
-        %p &copy; The Language of Color 2015 | #{ link_to 'Disclaimer', '/disclaimer'}
+        %ul.list-inline
+          %li &copy; The Language of Color 2015
+          %li #{ link_to 'Disclaimer', '/disclaimer'}
+          %li #{ link_to 'International Colour Association', 'http://aic-color.org/', target: '_blank' }
