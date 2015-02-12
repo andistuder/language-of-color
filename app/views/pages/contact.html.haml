@@ -9,7 +9,23 @@
 
 %p= link_to 'language-of-color@aic-colour.org', 'mailto:language-of-color@aic-colour.org,'
 %p= link_to 'Facebook group', '#'
-%p= link_to '@twitter', '#'
+
+%p= link_to '@twitter', '#', class: 'btn btn-social btn-twitter'
+
+.row
+  .col-md-3
+    %a.btn.btn-block.btn-social.btn-twitter
+      %i.fa.fa-twitter
+      Twitter
+%br
+%ul.list-inline
+  %li
+    %a.btn.btn-social-icon.btn-twitter{title: 'Twitter', href: 'http://twitter.com', target: '_blank'}
+      %i.fa.fa-twitter
+  %li
+    %a.btn.btn-social-icon.btn-facebook{title: 'Twitter', href: 'http://facebook.com', target: '_blank'}
+      %i.fa.fa-facebook
+
 %hr
 %h4 Drop us a line
 .row
