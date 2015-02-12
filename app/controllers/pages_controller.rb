@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   end
   def contact
   end
-  def data
+  def resources
   end
   def news
   end

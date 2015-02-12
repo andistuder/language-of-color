@@ -1,6 +1,9 @@
 %h1 Members Area
 
-%p Welcome to the Study Group Language of Colour (SGLC) Member's area of the International Color Association (AIC).
+%p
+  Welcome to the
+  %strong Language of Colour
+  study group Member's area of the International Color Association (AIC).
 
 %p Existing members can log in to the site and access contact details of other members, newsletters, details of meetings, articles, datasets and other resources.
 
@@ -8,7 +11,7 @@
 
 %p Your name and personal website (if any) will be open to the public but your contact details will be only available to existing members.
 
-%p You can also find SGLC on #{ link_to('Facebook', '#')} or follow us on #{ link_to 'Twitter', '#' }.
+%h2.top-spaced Values and principles
 
 %ul
   %li The membership is free and open to everyone
@@ -19,9 +22,7 @@
   %li Co-operation rather than competition
   %li Attendance of SGLC meetings is open to anybody interested in this field
 
-= link_to 'Register as a member', new_member_registration_path, {class: 'btn btn-primary'} unless current_member.present?
-
-%h2 Current Members
+%h2.top-spaced Current Members
 
 %table.table
   %thead

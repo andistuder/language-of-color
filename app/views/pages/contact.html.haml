@@ -9,39 +9,22 @@
   London E17 7AZ
 
 %p= link_to 'language-of-color@aic-colour.org', 'mailto:language-of-color@aic-colour.org,'
-%p= link_to 'Facebook group', '#'
 
-%p= link_to '@twitter', '#', class: 'btn btn-social btn-twitter'
+/ %hr
+/ %h4 Drop us a line
+/ .row
+/   .col-lg-6
 
-.row
-  .col-md-3
-    %a.btn.btn-block.btn-social.btn-twitter
-      %i.fa.fa-twitter
-      Twitter
-%br
-%ul.list-inline
-  %li
-    %a.btn.btn-social-icon.btn-twitter{title: 'Twitter', href: 'http://twitter.com', target: '_blank'}
-      %i.fa.fa-twitter
-  %li
-    %a.btn.btn-social-icon.btn-facebook{title: 'Twitter', href: 'http://facebook.com', target: '_blank'}
-      %i.fa.fa-facebook
-
-%hr
-%h4 Drop us a line
-.row
-  .col-lg-6
-
-    %form#new_message{"accept-charset" => "UTF-8", :action => "/members/sign_in", :method => "post"}
-      .field.form-group
-        %label{:for => "member_email"} Email
-        %input#email.form-control{:autofocus => "autofocus", :name => "member[email]", :required => "required", :type => "email", :value => ""}/
-      .field.form-group
-        %label{:for => "member_password"} Message
-        %textarea#message.form-control{:autocomplete => "off", :name => "member[password]", :required => "required", :type => "text", rows: "3"}
-      .field.form-group
-        %input{:name => "member[remember_me]", :type => "hidden", :value => "0"}/
-        %input#member_remember_me{:name => "member[remember_me]", :type => "checkbox", :value => "1"}/
-        %label{:for => "member_remember_me"} Add me to your mailing list
-      .actions
-        %input.btn.btn-primary{:name => "commit", :type => "submit", :value => "Send"}/
+/     %form#new_message{"accept-charset" => "UTF-8", :action => "/members/sign_in", :method => "post"}
+/       .field.form-group
+/         %label{:for => "member_email"} Email
+/         %input#email.form-control{:autofocus => "autofocus", :name => "member[email]", :required => "required", :type => "email", :value => ""}/
+/       .field.form-group
+/         %label{:for => "member_password"} Message
+/         %textarea#message.form-control{:autocomplete => "off", :name => "member[password]", :required => "required", :type => "text", rows: "3"}
+/       .field.form-group
+/         %input{:name => "member[remember_me]", :type => "hidden", :value => "0"}/
+/         %input#member_remember_me{:name => "member[remember_me]", :type => "checkbox", :value => "1"}/
+/         %label{:for => "member_remember_me"} Add me to your mailing list
+/       .actions
+/         %input.btn.btn-primary{:name => "commit", :type => "submit", :value => "Send"}/
