@@ -51,7 +51,8 @@
         - if current_member.present?
           %td= member.job_title
           %td= member.organisation
-        %td= link_to member.link, member.link, target: '_blank'
+        %td
+          = link_to member.link, member.link, target: '_blank' if member.link.present?
         - if current_member.present?
           %td= member.email
         / %td= link_to 'Show', member
