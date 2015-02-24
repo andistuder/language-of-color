@@ -16,3 +16,38 @@
 footer {
   margin-top: 30px;
 }
+
+body.home header {
+    display:none;
+}
+
+@media (min-width: 768px) {
+
+  body.home {
+
+    .navbar {
+      margin-bottom: 0px;
+    }
+
+    header {
+      display: block;
+      background: #333;
+      color: #fff;
+      height: 251px;
+      padding-top: 124px;
+      background-image: image-url('colorful-background-2a.jpg');
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      margin-bottom: 21px;
+    }
+
+    header h1 {
+      font-weight: 400;
+    }
+
+    header .small {
+      color: #fff;
+    }
+  }
+}

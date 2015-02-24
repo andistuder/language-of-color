@@ -1,0 +1,17 @@
+.navbar.navbar-default.navbar-static-top
+  .container
+    %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    %a.navbar-brand{:href => "/"} Language of Color
+    .navbar-collapse.collapse.navbar-responsive-collapse
+      %ul.nav.navbar-nav
+        %li= link_to "About", "/about"
+        / %li= link_to "News", "/news"
+        %li= link_to "Members", "/members"
+        %li= link_to "Bibliography", "/bibliography"
+        %li= link_to "Resources", "/resources"
+        %li= link_to "Contact", "/contact"
+        %li= current_member.present? ? link_to("Log out", destroy_member_session_path, method: :delete) : link_to('Log in', new_member_session_path)
+        %li= link_to("Edit my details", edit_member_registration_path) if current_member.present?

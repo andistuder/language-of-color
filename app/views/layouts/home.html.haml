@@ -2,8 +2,14 @@
 %html{:lang => "en"}
   %head
     = render partial: 'shared/head'
-  %body
+  %body.home
     = render partial: 'shared/navigation'
+    %header
+      .container
+        %h1
+          Language of Color
+          %br
+          %span.small a study group of the AIC
     .container
       .row
         .col-lg-8.main-content-area
