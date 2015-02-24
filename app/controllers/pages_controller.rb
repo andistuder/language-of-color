@@ -7,6 +7,7 @@ class PagesController < ApplicationController
   def bibliography
   end
   def contact
+    @contact_form = ContactForm.new
   end
   def resources
   end

@@ -8,6 +8,7 @@ gem 'devise'
 gem "font-awesome-rails"
 gem 'haml-rails'
 gem 'jquery-rails', '~> 4.0.3'
+gem 'mail_form'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'rails_admin', '~> 0.6.6'

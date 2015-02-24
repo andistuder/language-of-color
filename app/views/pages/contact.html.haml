@@ -12,21 +12,29 @@
 
 %p= link_to 'language-of-color@aic-color.org', 'mailto:language-of-color@aic-color.org,'
 
-/ %hr
-/ %h4 Drop us a line
-/ .row
-/   .col-lg-6
-
-/     %form#new_message{"accept-charset" => "UTF-8", :action => "/members/sign_in", :method => "post"}
-/       .field.form-group
-/         %label{:for => "member_email"} Email
-/         %input#email.form-control{:autofocus => "autofocus", :name => "member[email]", :required => "required", :type => "email", :value => ""}/
-/       .field.form-group
-/         %label{:for => "member_password"} Message
-/         %textarea#message.form-control{:autocomplete => "off", :name => "member[password]", :required => "required", :type => "text", rows: "3"}
-/       .field.form-group
-/         %input{:name => "member[remember_me]", :type => "hidden", :value => "0"}/
-/         %input#member_remember_me{:name => "member[remember_me]", :type => "checkbox", :value => "1"}/
-/         %label{:for => "member_remember_me"} Add me to your mailing list
-/       .actions
-/         %input.btn.btn-primary{:name => "commit", :type => "submit", :value => "Send"}/
+%hr
+%h4 Drop us a line
+= form_for @contact_form do |f|
+  - if @contact_form.errors.any?
+    #error_explanation
+      %h4= "#{pluralize(@contact_form.errors.count, "error")} prohibited this message from being sent:"
+      %ul
+        - @contact_form.errors.full_messages.each do |msg|
+          %li= msg
+  .field.form-group
+    = f.label :name
+    = f.text_field :name, {class: 'form-control', required: "required"}
+  .field.form-group.hidden
+    = f.label :nickname
+    = f.text_field :nickname, {class: 'form-control'}
+  .field.form-group
+    = f.label :email
+    = f.email_field :email, {class: 'form-control', required: "required"}
+  .field.form-group
+    = f.label :message
+    = f.text_area :message, {class: 'form-control', rows: 5}
+  .field.form-group
+    = f.check_box :subscribe_to_mailing_list, {}, 'yes', 'no'
+    = f.label :subscribe_to_mailing_list
+  .actions
+    = f.submit 'Send', {class: 'btn btn-primary'}
