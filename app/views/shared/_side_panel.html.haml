@@ -8,11 +8,27 @@
       study group can see each others full contact details. They also get priviledged access to publication and data sets.
     %p= link_to 'Register now', new_member_registration_path, {class: 'btn btn-primary'} unless current_member
     %p It's free.
+.panel.panel-primary
+  .panel-heading
+    %h4
+      Twitter
+      %span.small
+        = link_to "Follow us", 'https://twitter.com/aic_lc', {target: '_blank'}
+  .panel-body
+    - if @tweets.present?
+      %ul.list-unstyled#twitter
+        - @tweets.each do | tweet |
+          %li
+            = tweet.full_text
+            .small
+              =link_to "#{time_ago_in_words(tweet.created_at)}", "https://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}"
+    %p
+      = link_to 'Follow us', "https://twitter.com/aic_lc", {target: '_blank', class: 'btn btn-primary'}
 
-%a.btn.btn-block.btn-social.btn-twitter{href: 'https://twitter.com/aic_lc', title: 'Follow us on Twitter', target: '_blank' }
-  %i.fa.fa-twitter
-  Follow us on Twitter
-%br
+/ %a.btn.btn-block.btn-social.btn-twitter{href: 'https://twitter.com/aic_lc', title: 'Follow us on Twitter', target: '_blank' }
+/   %i.fa.fa-twitter
+/   Follow us on Twitter
+/ %br
 %a.btn.btn-block.btn-social.btn-facebook{href: 'https://www.facebook.com/languageofcolour/', title: 'Like us on Facebook', target: '_blank'}
   %i.fa.fa-facebook
   Like us on Facebook
@@ -20,22 +36,4 @@
 %a.btn.btn-block.btn-social.btn-pinterest{href: 'http://aic-color.org/', title: 'Visit AIC International Color Association', target: '_blank'}
   /%i.fa.fa-facebook
   Visit AIC International Color Association
-/ .panel.panel-primary
-/   .panel-heading
-/     %h4
-/       Twitter
-/       %span.small
-/         = link_to "Follow us", '#'
-/   .panel-body
-/     %ul.list-unstyled#twitter
-/       %li
-/         RT @andistuder: LFT #OffThePage a literary festival on music by @thewiremagazine @Qujunktions & @ArnolfiniArts http://t.co/0OpkTIxZQn
-/         .small 5 months ago from Hootsuite
-/       %li
-/         RT @tweetsatthehub: 5 days until the #OneDayer - The Future of Independent Live Music, Tech & Finance. 12 Sept http://t.co/tCo9Ykhr2J
-/         .small 5 months ago from Hootsuite
-/       %li
-/         Big ups to PoolLoop, festival for experimental instruments in Zurich 1-7 Jul http://t.co/INA9xFOzVE
-/         .small over 1 year ago from Hootsuite
-/     %p
-/       = link_to 'Follow us', '#', {class: 'btn btn-primary'}
+

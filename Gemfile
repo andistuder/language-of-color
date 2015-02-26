@@ -13,6 +13,7 @@ gem 'newrelic_rpm'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'rails_admin', '~> 0.6.6'
+gem 'twitter'
 gem "twitter-bootstrap-rails"
 gem 'unicorn'
 
