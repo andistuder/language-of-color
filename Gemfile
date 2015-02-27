@@ -4,6 +4,7 @@ ruby '2.2.0'
 gem 'rails', '4.2.0'
 
 gem 'country_select'
+gem 'dalli'
 gem 'devise'
 gem "font-awesome-rails"
 gem 'haml-rails'

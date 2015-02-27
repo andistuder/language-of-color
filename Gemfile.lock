@@ -78,6 +78,7 @@ GEM
       nokogiri (~> 1.5)
       rails (>= 3, < 5)
     currencies (0.4.2)
+    dalli (2.7.2)
     database_cleaner (1.4.0)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
@@ -297,6 +298,7 @@ DEPENDENCIES
   byebug
   country_select
   cucumber-rails
+  dalli
   database_cleaner
   devise
   font-awesome-rails
