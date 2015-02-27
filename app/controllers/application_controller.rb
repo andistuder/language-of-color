@@ -38,8 +38,7 @@ class ApplicationController < ActionController::Base
         config.access_token        = ENV["TWITTER_ACCESS_TOKEN"]
         config.access_token_secret = ENV["TWITTER_ACCESS_SECRET"]
       end
-
-      client.user_timeline("aic_lc", {:count => 3})
+      client.user_timeline(TWITTER_NAME, {:count => 3}) if ENV["TWITTER_ACCESS_TOKEN"].present?
     end
   end
 end

@@ -13,19 +13,22 @@
     %h4
       Twitter
       %span.small
-        = link_to "Follow us", 'https://twitter.com/aic_lc', {target: '_blank'}
+        = link_to "Follow us", twitter_url, {target: '_blank'}
   .panel-body
     - if @tweets.present?
       %ul.list-unstyled#twitter
         - @tweets.each do | tweet |
-          %li
-            = tweet.full_text
-            .small
-              =link_to "#{time_ago_in_words(tweet.created_at)}", "https://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}"
+          - if tweet.is_a?(Twitter::Tweet)
+            %li
+              = tweet.full_text
+              .small
+                =link_to "#{time_ago_in_words(tweet.created_at)}", "https://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}"
+    - else
+      %p Meh, no tweets available. Check #{ link_to 'here', twitter_url }.
     %p
-      = link_to 'Follow us', "https://twitter.com/aic_lc", {target: '_blank', class: 'btn btn-primary'}
+      = link_to 'Follow us', twitter_url, {target: '_blank', class: 'btn btn-primary'}
 
-/ %a.btn.btn-block.btn-social.btn-twitter{href: 'https://twitter.com/aic_lc', title: 'Follow us on Twitter', target: '_blank' }
+/ %a.btn.btn-block.btn-social.btn-twitter{href: twitter_url, title: 'Follow us on Twitter', target: '_blank' }
 /   %i.fa.fa-twitter
 /   Follow us on Twitter
 / %br
