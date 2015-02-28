@@ -8,7 +8,7 @@
       study group can see each others full contact details. They also get priviledged access to publication and data sets.
     %p= link_to 'Register now', new_member_registration_path, {class: 'btn btn-primary'} unless current_member
     %p It's free.
-.panel.panel-primary
+.panel.panel-twitter
   .panel-heading
     %h4
       Twitter
@@ -25,13 +25,7 @@
                 =link_to "#{time_ago_in_words(tweet.created_at)}", "https://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}"
     - else
       %p Meh, no tweets available. Check #{ link_to 'here', twitter_url }.
-    %p
-      = link_to 'Follow us', twitter_url, {target: '_blank', class: 'btn btn-primary'}
 
-/ %a.btn.btn-block.btn-social.btn-twitter{href: twitter_url, title: 'Follow us on Twitter', target: '_blank' }
-/   %i.fa.fa-twitter
-/   Follow us on Twitter
-/ %br
 %a.btn.btn-block.btn-social.btn-facebook{href: 'https://www.facebook.com/languageofcolour/', title: 'Like us on Facebook', target: '_blank'}
   %i.fa.fa-facebook
   Like us on Facebook

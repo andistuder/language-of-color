@@ -13,6 +13,31 @@
   margin-bottom: 10px;
 }
 
+.panel-twitter {
+  border-color: #55acee;
+}
+.panel-twitter > .panel-heading {
+  color: #ffffff;
+  background-color: #55acee;
+  border-color: #55acee;
+  h4 span.small {
+  }
+}
+.panel-twitter > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #55acee;
+}
+.panel-twitter > .panel-heading .badge {
+  color: #55acee;
+  background-color: #ffffff;
+}
+.panel-twitter > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #55acee;
+}
+
+.panel-twitter > .panel-heading a {
+  color: #ffffff;
+}
+
 footer {
   margin-top: 30px;
 }
