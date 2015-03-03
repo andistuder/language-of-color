@@ -13,6 +13,7 @@ gem 'mail_form'
 gem 'newrelic_rpm'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
+gem 'sitemap_generator'
 gem 'rails_admin', '~> 0.6.6'
 gem 'twitter'
 gem "twitter-bootstrap-rails"

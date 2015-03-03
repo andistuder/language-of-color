@@ -7,11 +7,11 @@
     %a.navbar-brand{:href => "/"} Language of Color
     .navbar-collapse.collapse.navbar-responsive-collapse
       %ul.nav.navbar-nav
-        %li= link_to "About", "/about"
+        %li= link_to "About", about_path
         / %li= link_to "News", "/news"
-        %li= link_to "Members", "/members"
-        %li= link_to "Bibliography", "/bibliography"
-        %li= link_to "Resources", "/resources"
-        %li= link_to "Contact", "/contact"
+        %li= link_to "Members", members_path
+        %li= link_to "Bibliography", bibliography_path
+        %li= link_to "Resources", resources_path
+        %li= link_to "Contact", contact_path
         %li= current_member.present? ? link_to("Log out", destroy_member_session_path, method: :delete) : link_to('Log in', new_member_session_path)
         %li= link_to("Edit my details", edit_member_registration_path) if current_member.present?
