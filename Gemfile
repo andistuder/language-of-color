@@ -6,7 +6,6 @@ gem 'rails', '4.2.0'
 gem 'country_select'
 gem 'dalli'
 gem 'devise'
-gem "font-awesome-rails"
 gem 'haml-rails'
 gem 'jquery-rails', '~> 4.0.3'
 gem 'mail_form'

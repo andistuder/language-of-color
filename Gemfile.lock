@@ -303,7 +303,6 @@ DEPENDENCIES
   dalli
   database_cleaner
   devise
-  font-awesome-rails
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails (~> 4.0.3)
