@@ -62,3 +62,5 @@
         / %td= link_to 'Show', member
         / %td= link_to 'Edit', edit_member_path(member)
         / %td= link_to 'Destroy', member, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+= link_to 'Download CSV', members_path(format: 'csv') if current_member.try(:is_admin?)

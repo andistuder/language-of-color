@@ -5,6 +5,16 @@ class MembersController < ApplicationController
   # GET /members.json
   def index
     @members = Member.all
+    respond_to do |format|
+      format.html
+      format.csv do
+        if current_member.try(:is_admin?)
+          send_data @members.to_csv
+        else
+          render plain: "403 Forbidden", status: 403 unless current_member.try(:is_admin?)
+        end
+      end
+    end
   end
 
   # GET /members/1
