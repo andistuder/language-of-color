@@ -3,8 +3,8 @@
 %h1= @news_item.title
 %p.small
   = @news_item.published ? "Posted on #{@news_item.published_at.strftime('%F')}" : "Not published"
-%p= @news_item.content
+= markup(@news_item.content)
 %p.small
   = link_to 'Edit', edit_news_item_path(@news_item)
   \|
-  = link_to 'All news', news_items_path
+  = link_to 'All news items', news_items_path

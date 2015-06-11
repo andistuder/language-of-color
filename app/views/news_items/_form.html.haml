@@ -11,7 +11,11 @@
     = f.text_field :title, {class: 'form-control'}
   .field.form-group
     = f.label :content
-    = f.text_area :content, {class: 'form-control'}
+    = f.text_area :content, {class: 'form-control', rows: 8}
+    %p.small
+      You can use
+      = link_to 'Markdown', 'https://help.github.com/articles/markdown-basics/', {target: '_blank'}
+      syntax
   .checkbox
     %label
       = f.check_box 'published'
