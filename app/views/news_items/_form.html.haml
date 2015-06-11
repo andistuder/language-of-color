@@ -1,0 +1,23 @@
+= form_for @news_item do |f|
+  - if @news_item.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@news_item.errors.count, "error")} prohibited this news_item from being saved:"
+      %ul
+        - @news_item.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field.form-group
+    = f.label :title
+    = f.text_field :title, {class: 'form-control'}
+  .field.form-group
+    = f.label :content
+    = f.text_area :content, {class: 'form-control'}
+  .checkbox
+    %label
+      = f.check_box 'published'
+      Published
+  .field.form-group
+    = f.label :published_at
+    = f.datetime_select :published_at, {class: 'form-control'}
+  .actions
+    = f.submit 'Save', {class: 'btn btn-primary'}

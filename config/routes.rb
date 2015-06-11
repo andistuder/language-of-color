@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   devise_for :members
   resources :members, only: [:index]
 
+  resources :news_items, path: 'news'
+
   resources :contact_forms, only: [:create]
+
   get 'contact_forms', to: redirect('/contact')
 
   root 'pages#home'
