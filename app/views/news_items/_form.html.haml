@@ -1,4 +1,4 @@
-= form_for @news_item do |f|
+= form_for(@news_item, multipart: true) do |f|
   - if @news_item.errors.any?
     #error_explanation
       %h2= "#{pluralize(@news_item.errors.count, "error")} prohibited this news_item from being saved:"
@@ -12,10 +12,16 @@
   .field.form-group
     = f.label :content
     = f.text_area :content, {class: 'form-control', rows: 8}
-    %p.small
+    %p.help-block
       You can use
       = link_to 'Markdown', 'https://help.github.com/articles/markdown-basics/', {target: '_blank'}
       syntax
+  .field.form-group
+    = f.label :article_image
+    = f.file_field :article_image
+  .field.form-group
+    = f.label :image_caption
+    = f.text_field :image_caption, {class: 'form-control'}
   .checkbox
     %label
       = f.check_box 'published'
