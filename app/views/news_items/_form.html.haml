@@ -19,15 +19,17 @@
   .field.form-group
     = f.label :article_image
     = f.file_field :article_image
+    %p.help-block Optimal image size: 940px by 705px
   .field.form-group
     = f.label :image_caption
     = f.text_field :image_caption, {class: 'form-control'}
+  .field.form-group
+    = f.label :published_at
+    %br
+    = f.datetime_select :published_at
   .checkbox
     %label
       = f.check_box 'published'
       Published
-  .field.form-group
-    = f.label :published_at
-    = f.datetime_select :published_at, {class: 'form-control'}
   .actions
     = f.submit 'Save', {class: 'btn btn-primary'}
