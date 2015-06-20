@@ -6,4 +6,4 @@ Feature: Static Pages
 
   Scenario: About page loads
     When I visit "/about"
-    Then I can see the page heading "About Language of Colour"
+    Then I can see the page heading "About the Language of Color AIC Study Group"

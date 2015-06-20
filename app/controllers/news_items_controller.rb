@@ -1,5 +1,5 @@
 class NewsItemsController < ApplicationController
-  before_action :authorize
+  before_action :authorize, only: [:new, :edit, :update, :destroy]
   before_action :set_news_item, only: [:show, :edit, :update, :destroy]
 
   # GET /news_items
