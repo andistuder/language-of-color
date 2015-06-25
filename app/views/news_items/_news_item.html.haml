@@ -1,11 +1,4 @@
 - if news_item.published || current_member.try(:is_admin?)
-  - if news_item.article_image.present?
-    = image_tag(news_item.article_image.url(:large), class: 'img-responsive', alt: news_item.image_caption)
-    - if news_item.image_caption.present?
-      %p
-        %small
-          %i
-            = news_item.image_caption
   - if is_index
     %h2= news_item.title
   - else
@@ -13,6 +6,13 @@
   %p.small
     = news_item.published ? "Posted on #{news_item.published_at.strftime('%F')} - " : "Not published - "
     = link_to 'link', news_item
+  - if news_item.article_image.present?
+    = image_tag(news_item.article_image.url(:large), class: 'img-responsive', alt: news_item.image_caption)
+    - if news_item.image_caption.present?
+      %p
+        %small
+          %i
+            = news_item.image_caption
   = markup(news_item.content)
   - if current_member.try(:is_admin?)
     %p.small
