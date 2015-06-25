@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @news_items = NewsItem.all
+    @news_items = NewsItem.all.where(published: true)
 
     render layout: 'home'
   end

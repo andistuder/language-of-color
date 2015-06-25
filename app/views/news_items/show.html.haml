@@ -1,1 +1,5 @@
 = render :partial => 'news_item', :collection => [@news_item], :locals => {:is_index => false}
+
+- if current_member.try(:is_admin?)
+  = link_to 'New news item', new_news_item_path, {class: 'btn btn-primary'}
+  = link_to 'View unpublished news', news_items_path, {class: 'btn btn-default'}

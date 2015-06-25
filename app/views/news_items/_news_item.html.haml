@@ -14,16 +14,9 @@
     = news_item.published ? "Posted on #{news_item.published_at.strftime('%F')} - " : "Not published - "
     = link_to 'link', news_item
   = markup(news_item.content)
-  %p.small
-    - if is_index
-      - if current_member.try(:is_admin?)
-        \|
-        = link_to 'Edit', edit_news_item_path(news_item)
-        \|
-        = link_to 'Destroy', news_item, :method => :delete, :data => { :confirm => 'Are you sure?' }
-    - else
-      - if current_member.try(:is_admin?)
-        = link_to 'Edit', edit_news_item_path(news_item)
-        \|
-      = link_to 'All news items', news_items_path
+  - if current_member.try(:is_admin?)
+    %p.small
+      = link_to 'Edit', edit_news_item_path(news_item)
+      \|
+      = link_to 'Destroy', news_item, :method => :delete, :data => { :confirm => 'Are you sure?' }
   %hr
