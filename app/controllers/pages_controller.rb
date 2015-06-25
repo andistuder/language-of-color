@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
   def home
+    @news_items = NewsItem.all
+
     render layout: 'home'
   end
   def about

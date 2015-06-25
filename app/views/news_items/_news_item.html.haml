@@ -11,11 +11,11 @@
   - else
     %h1= news_item.title
   %p.small
-    = news_item.published ? "Posted on #{news_item.published_at.strftime('%F')}" : "Not published"
+    = news_item.published ? "Posted on #{news_item.published_at.strftime('%F')} - " : "Not published - "
+    = link_to 'link', news_item
   = markup(news_item.content)
   %p.small
     - if is_index
-      = link_to 'Show', news_item
       - if current_member.try(:is_admin?)
         \|
         = link_to 'Edit', edit_news_item_path(news_item)
