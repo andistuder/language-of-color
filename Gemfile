@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.2.0'
 
-gem 'rails', '4.2.0'
+gem 'rails', '~> 4.2.0'
 
 gem 'aws-sdk', '< 2.0'
 gem 'country_select'
@@ -14,7 +14,6 @@ gem 'mail_form'
 gem 'newrelic_rpm'
 gem 'paperclip'
 gem 'pg'
-gem 'sass-rails', '~> 5.0'
 gem 'sitemap_generator'
 gem 'rails_admin', '~> 0.6.6'
 gem 'twitter'
