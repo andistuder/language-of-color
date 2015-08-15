@@ -18,4 +18,4 @@ When changing pages, update `config/site_map.rb` and republish the sitemap:
 
 Start a local server with connection to the S3 production bucket:
 
-`SSH_USER=git AWS_SECRET_ACCESS_KEY=$(heroku config:get AWS_SECRET_ACCESS_KEY) S3_BUCKET_NAME=$(heroku config:get S3_BUCKET_NAME) AWS_ACCESS_KEY_ID=$(heroku config:get AWS_ACCESS_KEY_ID) foreman s`
+`bin/boot_with_heroku_options`
