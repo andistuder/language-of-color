@@ -23,22 +23,20 @@ class ApplicationController < ActionController::Base
   end
 
   def twitter
-    begin
-      @tweets = tweets
-    rescue Exception => e
-      logger.error("Error fetching tweets: #{e}")
-    end
+    @tweets = tweets
+  rescue StandardError => e
+    logger.error("Error fetching tweets: #{e}")
   end
 
   def tweets
-    Rails.cache.fetch("tweets", expires_in: 10.minutes) do
+    Rails.cache.fetch('tweets', expires_in: 10.minutes) do
       client = Twitter::REST::Client.new do |config|
-        config.consumer_key        = ENV["TWITTER_CONSUMER_KEY"]
-        config.consumer_secret     = ENV["TWITTER_CONSUMER_SECRET"]
-        config.access_token        = ENV["TWITTER_ACCESS_TOKEN"]
-        config.access_token_secret = ENV["TWITTER_ACCESS_SECRET"]
+        config.consumer_key        = ENV['TWITTER_CONSUMER_KEY']
+        config.consumer_secret     = ENV['TWITTER_CONSUMER_SECRET']
+        config.access_token        = ENV['TWITTER_ACCESS_TOKEN']
+        config.access_token_secret = ENV['TWITTER_ACCESS_SECRET']
       end
-      client.user_timeline(TWITTER_NAME, {:count => 3}) if ENV["TWITTER_ACCESS_TOKEN"].present?
+      client.user_timeline(TWITTER_NAME, count: 3) if ENV['TWITTER_ACCESS_TOKEN'].present?
     end
   end
 end

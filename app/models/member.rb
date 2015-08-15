@@ -8,13 +8,13 @@ class Member < ActiveRecord::Base
 
   default_scope { order('first_name') }
 
-  PUBLIC_ATTRIBUTES = %w{first_name  last_name title country_of_residence  job_title organisation  link  email}
+  PUBLIC_ATTRS = %w(first_name  last_name title country_of_residence  job_title organisation  link  email)
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << PUBLIC_ATTRIBUTES
-      all.each do |product|
-        csv << product.attributes.values_at(*PUBLIC_ATTRIBUTES)
+      csv << PUBLIC_ATTRS
+      all.find_each do |product|
+        csv << product.attributes.values_at(*PUBLIC_ATTRS)
       end
     end
   end

@@ -1,0 +1,23 @@
+AllCops:
+  RunRailsCops: true
+  Exclude:
+    - 'db/**/*'
+    - 'bin/**/*'
+
+Metrics/AbcSize:
+  Max: 16
+
+Metrics/LineLength:
+  Max: 110
+  Exclude:
+    - 'config/initializers/devise.rb'
+
+Metrics/MethodLength:
+  Max: 15
+
+Rails/Output:
+  Exclude:
+    - 'config/unicorn.rb'
+
+Style/Documentation:
+  Enabled: false

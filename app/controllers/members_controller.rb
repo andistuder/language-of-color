@@ -11,7 +11,7 @@ class MembersController < ApplicationController
         if current_member.try(:is_admin?)
           send_data @members.to_csv
         else
-          render plain: "403 Forbidden", status: 403 unless current_member.try(:is_admin?)
+          render plain: '403 Forbidden', status: 403 unless current_member.try(:is_admin?)
         end
       end
     end
@@ -72,13 +72,22 @@ class MembersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_member
-      @member = Member.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def member_params
-      params.require(:member).permit(:first_name, :last_name, :title, :country_of_residence, :job_title, :organisation, :link, :email)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_member
+    @member = Member.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def member_params
+    params.require(:member).permit(:first_name,
+                                   :last_name,
+                                   :title,
+                                   :country_of_residence,
+                                   :job_title,
+                                   :organisation,
+                                   :link,
+                                   :email
+                                  )
+  end
 end

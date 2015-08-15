@@ -15,7 +15,7 @@ class NewsItemsController < ApplicationController
 
   # GET /news_items/new
   def new
-    @news_item = NewsItem.new(published_at: Time.now)
+    @news_item = NewsItem.new(published_at: Time.current)
   end
 
   # GET /news_items/1/edit
@@ -63,17 +63,24 @@ class NewsItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_news_item
-      @news_item = NewsItem.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def news_item_params
-      params.require(:news_item).permit(:title, :content, :published_at, :published, :article_image, :image_caption)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_news_item
+    @news_item = NewsItem.find(params[:id])
+  end
 
-    def authorize
-      render plain: "403 Forbidden", status: 403 unless current_member.try(:is_admin?)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def news_item_params
+    params.require(:news_item).permit(:title,
+                                      :content,
+                                      :published_at,
+                                      :published,
+                                      :article_image,
+                                      :image_caption
+                                     )
+  end
+
+  def authorize
+    render plain: '403 Forbidden', status: 403 unless current_member.try(:is_admin?)
+  end
 end

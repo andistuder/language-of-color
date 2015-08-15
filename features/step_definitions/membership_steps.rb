@@ -3,8 +3,8 @@ When 'I registers as a member' do
   visit '/'
   click_link_or_button 'Register now'
 
-  within("#new_member") do
-    fill_in 'Email', :with => @member.email
+  within('#new_member') do
+    fill_in 'Email', with: @member.email
     fill_in 'First name', with: @member.first_name
     fill_in 'Last name', with: @member.last_name
     fill_in 'Link', with: @member.link
@@ -29,8 +29,8 @@ When 'I edit my details' do
   @member.link = 'http://www.johnny.com'
 
   click_link_or_button 'Edit my details'
-  within("#edit_member") do
-    fill_in 'Email', :with => @member.email
+  within('#edit_member') do
+    fill_in 'Email', with: @member.email
     fill_in 'First name', with: @member.first_name
     fill_in 'Last name', with: @member.last_name
     fill_in 'Link', with: @member.link

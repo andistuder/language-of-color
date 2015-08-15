@@ -5,5 +5,5 @@ class NewsItem < ActiveRecord::Base
     large: '940x705>'
   }
 
-  validates_attachment_content_type :article_image, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :article_image, content_type: %r{\Aimage\/.*\Z}
 end

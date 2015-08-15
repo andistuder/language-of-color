@@ -1,4 +1,4 @@
-SitemapGenerator::Sitemap.default_host = "http://language-of-color.aic-color.org"
+SitemapGenerator::Sitemap.default_host = 'http://language-of-color.aic-color.org'
 
 SitemapGenerator::Sitemap.create do
   # The root path '/' and sitemap index file are added automatically for you.
@@ -11,7 +11,7 @@ SitemapGenerator::Sitemap.create do
   #           :lastmod => Time.now, :host => default_host
   #
   add about_path
-  add members_path, :priority => 0.7, :changefreq => 'daily'
+  add members_path, priority: 0.7, changefreq: 'daily'
   add bibliography_path
   add resources_path
   add contact_path
