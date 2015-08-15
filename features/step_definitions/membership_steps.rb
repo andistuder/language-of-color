@@ -1,4 +1,4 @@
-When 'I registers as a member' do
+When 'I register as a member' do
   @member = build(:member)
   visit '/'
   click_link_or_button 'Register now'
@@ -42,4 +42,12 @@ end
 Then 'I can log out' do
   click_link_or_button 'Log out'
   expect(page).to have_content('Signed out successfully')
+end
+
+Then 'I can delete my account' do
+  click_link_or_button 'Edit my details'
+  click_link_or_button 'Cancel my membership'
+  expect(page).to have_content('Bye! Your account has been successfully cancelled.'\
+                               'We hope to see you again soon.'
+                              )
 end
