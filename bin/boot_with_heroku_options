@@ -1,0 +1,5 @@
+#!/bin/sh
+S3_BUCKET_NAME=$(heroku config:get S3_BUCKET_NAME) \
+AWS_ACCESS_KEY_ID=$(heroku config:get AWS_ACCESS_KEY_ID) \
+AWS_SECRET_ACCESS_KEY=$(heroku config:get AWS_SECRET_ACCESS_KEY) \
+foreman s -p 5000
