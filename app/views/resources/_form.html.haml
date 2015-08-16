@@ -1,0 +1,42 @@
+= form_for @resource do |f|
+  - if @resource.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@resource.errors.count, "error")} prohibited this resource from being saved:"
+      %ul
+        - @resource.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field.form-group
+    = f.label :title
+    = f.text_field :title, {class: 'form-control'}
+  .field.form-group
+    = f.label :summary
+    = f.text_area :summary, {class: 'form-control', rows: 5}
+    %p.help-block
+      You can use
+      = link_to 'Markdown', 'https://help.github.com/articles/markdown-basics/', {target: '_blank'}
+      syntax
+  .field.form-group
+    = f.label :author
+    = f.text_area :author, {class: 'form-control', rows: 2}
+  .field.form-group
+    = f.label :published_at
+    %br
+    = f.datetime_select :published_at
+  .checkbox
+    %label
+      = f.check_box 'published'
+      Published
+  .checkbox
+    %label
+      = f.check_box 'public_download'
+      Public download
+  .field.form-group
+    = f.label :file
+    = f.file_field :file
+  .field.form-group
+    = f.label :license
+    = f.text_area :license, {class: 'form-control', rows: 3}
+
+  .actions
+    = f.submit 'Save', {class: 'btn btn-primary'}

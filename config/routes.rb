@@ -5,6 +5,12 @@ Rails.application.routes.draw do
 
   resources :news_items, path: 'news'
 
+  resources :resources do
+    member do
+      get 'download'
+    end
+  end
+
   resources :contact_forms, only: [:create]
 
   get 'contact_forms', to: redirect('/contact')
@@ -14,7 +20,6 @@ Rails.application.routes.draw do
   get 'about' => 'pages#about'
   get 'bibliography' => 'pages#bibliography'
   get 'contact' => 'pages#contact'
-  get 'resources' => 'pages#resources'
   get 'disclaimer' => 'pages#disclaimer'
   get 'news' => 'pages#news'
 end
