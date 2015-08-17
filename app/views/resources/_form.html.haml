@@ -1,6 +1,6 @@
 = form_for @resource do |f|
   - if @resource.errors.any?
-    #error_explanation
+    #error_explanation.alert.alert-danger
       %h2= "#{pluralize(@resource.errors.count, "error")} prohibited this resource from being saved:"
       %ul
         - @resource.errors.full_messages.each do |msg|
@@ -34,6 +34,8 @@
   .field.form-group
     = f.label :file
     = f.file_field :file
+    %p.help-block
+      You can upload pdf or zip files only.
   .field.form-group
     = f.label :license
     = f.text_area :license, {class: 'form-control', rows: 3}

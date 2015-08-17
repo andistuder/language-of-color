@@ -3,5 +3,5 @@ class Resource < ActiveRecord::Base
     :s3_permissions => :private
 
   #TODO: any type allowed
-  validates_attachment_content_type :file, content_type: %r{\Aimage\/.*\Z}
+  validates_attachment_content_type :file, content_type: %r{\A(application\/(pdf|zip))\Z}
 end
