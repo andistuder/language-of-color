@@ -1,31 +1,16 @@
-%p#notice= notice
-
-%p
-  %b Title:
-  = @resource.title
+%h1= @resource.title
 %p
   %b Published at:
-  = @resource.published_at
+  = @resource.published_at.strftime('%F')
+= markup('**Author(s):** ' + @resource.author)
+= markup(@resource.summary)
 %p
-  %b Published:
-  = @resource.published
-%p
-  %b Public download:
-  = @resource.public_download
-%p
-  %b Author:
-  = @resource.author
-%p
-  %b Summary:
-  = @resource.summary
-%p
-  = link_to "Download", download_resource_path(@resource)
-%p
-  = link_to "Public Download", @resource.file.url
-%p
-  %b License:
-  = @resource.license
+  - if !@resource.public_download || !current_member.present?
+    = link_to "Download", download_resource_path(@resource)
+  - else
+    %em Download available to members only
+= markup('**License:** ' + @resource.summary)
 
-= link_to 'Edit', edit_resource_path(@resource)
-\|
-= link_to 'Back', resources_path
+- if current_member.try(:is_admin?)
+  = link_to 'Edit', edit_resource_path(@resource), {class: 'btn btn-primary'}
+= link_to 'View all resources', resources_path, {class: 'btn btn-default'}

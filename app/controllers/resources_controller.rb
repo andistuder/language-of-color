@@ -1,4 +1,5 @@
 class ResourcesController < ApplicationController
+  before_action :authorize, only: [:new, :edit, :update, :destroy]
   before_action :set_resource, only: [:show, :edit, :update, :destroy, :download]
 
   # GET /resources
@@ -10,6 +11,7 @@ class ResourcesController < ApplicationController
   # GET /resources/1
   # GET /resources/1.json
   def show
+    render plain: '404 Not found', status: 404 unless @resource.published? || current_member.try(:is_admin?)
   end
 
   # GET /resources/new
@@ -66,13 +68,17 @@ class ResourcesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_resource
-      @resource = Resource.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_resource
+    @resource = Resource.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def resource_params
-      params.require(:resource).permit(:title, :published_at, :published, :public_download, :author, :summary, :license, :file)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def resource_params
+    params.require(:resource).permit(:title, :published_at, :published, :public_download, :author, :summary, :license, :file)
+  end
+
+  def authorize
+    render plain: '403 Forbidden', status: 403 unless current_member.try(:is_admin?)
+  end
 end

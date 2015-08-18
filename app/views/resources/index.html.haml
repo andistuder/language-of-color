@@ -1,33 +1,29 @@
-%h1 Listing resources
+%h1 Resources
 
-%table
+%table.table.table-condensed.table-striped
   %thead
     %tr
-      %th Title
-      %th Published at
-      %th Published
-      %th Public download
+      %th{width: '12%'} Published at
+      %th{width: '50%'} Title
       %th Author
-      %th Summary
-      %th License
-      %th
-      %th
-      %th
+      - if current_member.try(:is_admin?)
+        %th{width: '5%'} Edit
+        %th{width: '7%'} Destroy
 
   %tbody
     - @resources.each do |resource|
-      %tr
-        %td= resource.title
-        %td= resource.published_at
-        %td= resource.published
-        %td= resource.public_download
-        %td= resource.author
-        %td= resource.summary
-        %td= resource.license
-        %td= link_to 'Show', resource
-        %td= link_to 'Edit', edit_resource_path(resource)
-        %td= link_to 'Destroy', resource, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      - if resource.published? || current_member.try(:is_admin?)
+        %tr
+          %td= resource.published_at.strftime('%F')
+          %td= link_to resource.title, resource
+          %td= resource.author
+          %td
+            - if current_member.try(:is_admin?)
+              %a{href: edit_resource_path(resource), title: 'Edit'}
+                %i.fa.fa-pencil
+          %td
+            - if current_member.try(:is_admin?)
+              %a{href: resource_path(resource), title: 'Destroy', :data => { :confirm => 'Are you sure?', :method => :delete }}
+                %i.fa.fa-trash
 
-%br
-
-= link_to 'New Resource', new_resource_path
+= link_to 'New Resource', new_resource_path, {class: 'btn btn-primary'} if current_member.try(:is_admin?)
