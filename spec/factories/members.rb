@@ -9,8 +9,8 @@ FactoryGirl.define do
     is_admin false
 
     trait :admin do
-       is_admin true
-     end
-     factory :admin, traits: [:admin]
+      is_admin true
+    end
+    factory :admin, traits: [:admin]
   end
 end
