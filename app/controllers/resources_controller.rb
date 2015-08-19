@@ -11,7 +11,7 @@ class ResourcesController < ApplicationController
   # GET /resources/1
   # GET /resources/1.json
   def show
-    render plain: '404 Not found', status: 404 unless @resource.published? || current_member.try(:is_admin?)
+    render(plain: '404 Not found', status: 404) && return unless @resource.published? || current_member.try(:is_admin?)
   end
 
   # GET /resources/new
@@ -64,6 +64,8 @@ class ResourcesController < ApplicationController
   end
 
   def download
+    render(plain: '404 Not found', status: 404) && return unless @resource.published? || current_member.try(:is_admin?)
+    render(plain: '403 Forbidden - available to members only', status: 403) && return unless @resource.public_download || current_member.present?
     redirect_to @resource.file.expiring_url(10)
   end
 

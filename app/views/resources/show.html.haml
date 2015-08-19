@@ -5,11 +5,11 @@
 = markup('**Author(s):** ' + @resource.author)
 = markup(@resource.summary)
 %p
-  - if !@resource.public_download || !current_member.present?
+  - if @resource.public_download || current_member.present?
     = link_to "Download", download_resource_path(@resource)
   - else
     %em Download available to members only
-= markup('**License:** ' + @resource.summary)
+= markup(@resource.license)
 
 - if current_member.try(:is_admin?)
   = link_to 'Edit', edit_resource_path(@resource), {class: 'btn btn-primary'}
