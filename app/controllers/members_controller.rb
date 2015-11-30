@@ -4,14 +4,18 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def index
-    @members = Member.all
-    respond_to do |format|
-      format.html
-      format.csv do
-        if current_member.try(:is_admin?)
-          send_data @members.to_csv
-        else
-          render plain: '403 Forbidden', status: 403 unless current_member.try(:is_admin?)
+    if ENV['MEMBERS_DISABLED'] && !current_member.try(:is_admin?)
+      redirect_to '/', notice: 'Membership page temporarily unavailable.'
+    else
+      @members = Member.all
+      respond_to do |format|
+        format.html
+        format.csv do
+          if current_member.try(:is_admin?)
+            send_data @members.to_csv
+          else
+            render plain: '403 Forbidden', status: 403 unless current_member.try(:is_admin?)
+          end
         end
       end
     end
@@ -24,7 +28,11 @@ class MembersController < ApplicationController
 
   # GET /members/new
   def new
-    @member = Member.new
+    if ENV['MEMBERS_DISABLED']
+      redirect_to '/', notice: 'Membership page temporarily unavailable.'
+    else
+      @member = Member.new
+    end
   end
 
   # GET /members/1/edit
@@ -34,15 +42,19 @@ class MembersController < ApplicationController
   # POST /members
   # POST /members.json
   def create
-    @member = Member.new(member_params)
+    if ENV['MEMBERS_DISABLED']
+      render plain: '503 Service unavailable. Try again later.', status: 503
+    else
+      @member = Member.new(member_params)
 
-    respond_to do |format|
-      if @member.save
-        format.html { redirect_to @member, notice: 'Member was successfully created.' }
-        format.json { render :show, status: :created, location: @member }
-      else
-        format.html { render :new }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @member.save
+          format.html { redirect_to @member, notice: 'Member was successfully created.' }
+          format.json { render :show, status: :created, location: @member }
+        else
+          format.html { render :new }
+          format.json { render json: @member.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
