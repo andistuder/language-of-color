@@ -47,7 +47,7 @@ end
 Then 'I can delete my account' do
   click_link_or_button 'Edit my details'
   click_link_or_button 'Cancel my membership'
-  expect(page).to have_content('Bye! Your account has been successfully cancelled.'\
+  expect(page).to have_content('Bye! Your account has been successfully cancelled. '\
                                'We hope to see you again soon.'
                               )
 end

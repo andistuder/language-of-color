@@ -5,10 +5,10 @@ AllCops:
     - 'bin/**/*'
 
 Metrics/AbcSize:
-  Max: 16
+  Max: 20
 
 Metrics/LineLength:
-  Max: 110
+  Max: 120
   Exclude:
     - 'config/initializers/devise.rb'
 

@@ -1,8 +1,6 @@
 class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
 
-  # GET /members
-  # GET /members.json
   def index
     if ENV['MEMBERS_DISABLED'] && !current_member.try(:is_admin?)
       redirect_to '/', notice: 'Membership page temporarily unavailable.'

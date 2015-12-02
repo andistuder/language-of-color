@@ -7,4 +7,3 @@ rescue LoadError
     raise 'Disabled as RuboCop gem is unavailable'
   end
 end
-task default: :rubocop
