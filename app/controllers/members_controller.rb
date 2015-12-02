@@ -5,11 +5,7 @@ class MembersController < ApplicationController
     if ENV['MEMBERS_DISABLED'] && !current_member.try(:is_admin?)
       redirect_to '/', notice: 'Membership page temporarily unavailable.'
     else
-      @members = if params[:approved] == "false"
-        Member.find_all_by_approved(false)
-      else
-        @users = Member.all
-      end
+      @members = Member.all
       respond_to do |format|
         format.html
         format.csv do

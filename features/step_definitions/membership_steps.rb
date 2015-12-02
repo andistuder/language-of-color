@@ -1,3 +1,7 @@
+Given 'an administrator exists' do
+  @admin = create(:admin)
+end
+
 When 'I register as a member' do
   @member = build(:member)
   visit '/'
@@ -12,6 +16,29 @@ When 'I register as a member' do
     fill_in 'Password confirmation', with: @member.password
   end
   click_button 'Sign up'
+end
+
+When 'my account is approved' do
+  visit '/'
+  click_link_or_button 'Log in'
+  within('#new_member') do
+    fill_in 'Email', with: @admin.email
+    fill_in 'Password', with: @admin.password
+    click_link_or_button 'Log in'
+  end
+  visit '/members'
+  click_link_or_button 'Approve!'
+  # expect to see?
+  click_link_or_button 'Log out'
+end
+
+When 'I log in' do
+  click_link_or_button 'Log in'
+  within('#new_member') do
+    fill_in 'Email', with: @member.email
+    fill_in 'Password', with: @member.password
+    click_link_or_button 'Log in'
+  end
 end
 
 Then 'I can see my details listed on the members page' do
