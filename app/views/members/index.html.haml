@@ -37,9 +37,9 @@
       %th Link
       - if current_member.present?
         %th Email
-      / %th
-      / %th
-      / %th
+      - if current_member.try(:is_admin?)
+        %th Approved?
+        %th
 
   %tbody
     - @members.each do |member|
@@ -60,7 +60,15 @@
             %a{href: "mailto:#{member.email}", title: member.email, target: '_blank'}
               %i.fa.fa-envelope-o
         / %td= link_to 'Show', member
-        / %td= link_to 'Edit', edit_member_path(member)
+        - if current_member.try(:is_admin?)
+          %td
+            - if member.approved?
+              %i.fa.fa-check
+            - else
+              = link_to 'Approve!', approve_member_path(member), :data => { :confirm => 'Are you sure?' }
         / %td= link_to 'Destroy', member, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-= link_to 'Download CSV', members_path(format: 'csv') if current_member.try(:is_admin?)
+- if current_member.try(:is_admin?)
+  = link_to "Users awaiting approval", :action => "index", :approved => "false"
+  |
+  = link_to 'Download CSV', members_path(format: 'csv')

@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :members
-  resources :members, only: [:index]
+  resources :members, only: [:index] do
+    member do
+      get 'approve'
+    end
+  end
 
   resources :news_items, path: 'news'
 

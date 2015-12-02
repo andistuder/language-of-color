@@ -1,11 +1,15 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: [:show, :edit, :update, :destroy]
+  before_action :set_member, only: [:approve]
 
   def index
     if ENV['MEMBERS_DISABLED'] && !current_member.try(:is_admin?)
       redirect_to '/', notice: 'Membership page temporarily unavailable.'
     else
-      @members = Member.all
+      @members = if params[:approved] == "false"
+        Member.find_all_by_approved(false)
+      else
+        @users = Member.all
+      end
       respond_to do |format|
         format.html
         format.csv do
@@ -19,23 +23,15 @@ class MembersController < ApplicationController
     end
   end
 
-  # GET /members/1
-  # GET /members/1.json
-  def show
-  end
-
-  # GET /members/new
-  def new
-    if ENV['MEMBERS_DISABLED']
-      redirect_to '/', notice: 'Membership page temporarily unavailable.'
+  def approve
+    render plain: '403 Forbidden', status: 403 && return unless current_member.try(:is_admin?)
+    if @member.update_attribute(:approved, true)
+      redirect_to members_path, notice: 'Member was successfully updated.'
     else
-      @member = Member.new
+      render plain: '500 Something went wrong', status: 500
     end
   end
 
-  # GET /members/1/edit
-  def edit
-  end
 
   # POST /members
   # POST /members.json
