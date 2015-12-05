@@ -14,4 +14,4 @@
         %li= link_to "Resources", resources_path
         %li= link_to "Contact", contact_path
         %li= current_member.present? ? link_to("Log out", destroy_member_session_path, method: :delete) : link_to('Log in', new_member_session_path)
-        %li= link_to("Edit my details", edit_member_registration_path) if current_member.present?
+        -# %li= link_to("Edit my details", edit_member_registration_path) if current_member.present?

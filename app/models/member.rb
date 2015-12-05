@@ -6,8 +6,8 @@ class Member < ActiveRecord::Base
   default_scope { order('first_name') }
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  # :confirmable, :lockable, :timeoutable and :omniauthable, :registerable
+  devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
   PUBLIC_ATTRS = %w(first_name  last_name title country_of_residence  job_title organisation  link  email)
