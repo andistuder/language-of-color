@@ -1,14 +1,26 @@
 require 'csv'
 
 class Member < ActiveRecord::Base
+  after_create :send_admin_mail
+
+  default_scope { order('first_name') }
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  default_scope { order('first_name') }
-
   PUBLIC_ATTRS = %w(first_name  last_name title country_of_residence  job_title organisation  link  email)
+
+  def self.send_reset_password_instructions(attributes = {})
+    recoverable = find_or_initialize_with_errors(reset_password_keys, attributes, :not_found)
+    if !recoverable.approved?
+      recoverable.errors[:base] << I18n.t('devise.failure.member.not_approved')
+    elsif recoverable.persisted?
+      recoverable.send_reset_password_instructions
+    end
+    recoverable
+  end
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
@@ -31,13 +43,7 @@ class Member < ActiveRecord::Base
     end
   end
 
-  def self.send_reset_password_instructions(attributes = {})
-    recoverable = find_or_initialize_with_errors(reset_password_keys, attributes, :not_found)
-    if !recoverable.approved?
-      recoverable.errors[:base] << I18n.t('devise.failure.member.not_approved')
-    elsif recoverable.persisted?
-      recoverable.send_reset_password_instructions
-    end
-    recoverable
+  def send_admin_mail
+    MemberMailer.new_member_waiting_for_approval(self).deliver
   end
 end

@@ -39,7 +39,6 @@
         %th Email
       - if current_member.try(:is_admin?)
         %th Approved?
-        %th
 
   %tbody
     - @members.each do |member|
@@ -47,7 +46,6 @@
         %tr
           %td= member.first_name
           %td= member.last_name
-          / %td= member.title
           %td= member.country_of_residence
           - if current_member.present?
             / %td= member.job_title
@@ -66,8 +64,9 @@
               - if member.approved?
                 %i.fa.fa-check
               - else
-                = link_to 'Approve!', approve_member_path(member), :data => { :confirm => 'Are you sure?' }
-          / %td= link_to 'Destroy', member, :method => :delete, :data => { :confirm => 'Are you sure?' }
+                = link_to 'Approve!', approve_member_path(member), :data => { :confirm => 'Approve: Are you sure?' }
+                = '/'
+                = link_to 'Destroy', member, :method => :delete, :data => { :confirm => 'Destroy: Are you sure?' }
 
 - if current_member.try(:is_admin?)
   = link_to 'Download CSV', members_path(format: 'csv')
