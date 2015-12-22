@@ -37,6 +37,12 @@ RailsAdmin.config do |config|
 
   config.model 'Member' do
     edit do
+      configure :email do
+        help 'Required.'
+      end
+      configure :set_password do
+        help 'Required when creating a new record.'
+      end
       configure :password do
         hide
       end
