@@ -44,7 +44,7 @@ class MembersController < ApplicationController
 
   def set_members
     @members = if params[:approved] == 'false'
-                 Member.find_all_by_approved(false)
+                 Member.where(approved: false)
                else
                  Member.all
                end
