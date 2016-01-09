@@ -2,6 +2,16 @@ Given 'an administrator exists' do
   @admin = create(:admin)
 end
 
+Given 'the following members exist:' do |table|
+  @approved_members = []
+  @unapproved_members = []
+  table.hashes.each do |hash|
+    new_member = create(:member, hash)
+
+    new_member.approved? ? @approved_members << new_member : @unapproved_members << new_member
+  end
+end
+
 When 'I register as a member' do
   @member = build(:member)
   visit '/'
@@ -27,6 +37,7 @@ When 'my account is approved' do
 end
 
 When 'I log in' do
+  @member ||= @approved_members.first
   log_in(@member)
 end
 
@@ -125,6 +136,28 @@ Then 'the member can activate their account' do
     expect(page).to have_text @member.first_name
   end
   click_link_or_button 'Log out'
+end
+
+Then(/^I should only see details of the approved members (exluding|including) emails$/) do |match|
+  visit '/members'
+  @approved_members.each do |member|
+    expect(page).to have_text(member.first_name)
+    expect(page).to have_text(member.last_name)
+    expect(page).to have_text(member.country_of_residence)
+    expect(page).to have_link(member.link)
+    if match == 'including'
+      expect(page).to have_link(member.email)
+    else
+      expect(page).not_to have_link(member.email)
+    end
+  end
+
+  @unapproved_members.each do |member|
+    expect(page).not_to have_text(member.first_name)
+    expect(page).not_to have_text(member.last_name)
+    expect(page).not_to have_text(member.country_of_residence)
+    expect(page).not_to have_link(member.link)
+  end
 end
 
 def log_in(member)
