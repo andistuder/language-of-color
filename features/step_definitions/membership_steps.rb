@@ -19,13 +19,7 @@ When 'I register as a member' do
 end
 
 When 'my account is approved' do
-  visit '/'
-  click_link_or_button 'Log in'
-  within('#new_member') do
-    fill_in 'Email', with: @admin.email
-    fill_in 'Password', with: @admin.password
-    click_link_or_button 'Log in'
-  end
+  log_in(@admin)
   visit '/members'
   click_link_or_button 'Approve!'
   # expect to see?
@@ -33,12 +27,7 @@ When 'my account is approved' do
 end
 
 When 'I log in' do
-  click_link_or_button 'Log in'
-  within('#new_member') do
-    fill_in 'Email', with: @member.email
-    fill_in 'Password', with: @member.password
-    click_link_or_button 'Log in'
-  end
+  log_in(@member)
 end
 
 Then 'I can see my details listed on the members page' do
@@ -77,4 +66,73 @@ Then 'I can delete my account' do
   expect(page).to have_content('Bye! Your account has been successfully cancelled. '\
                                'We hope to see you again soon.'
                               )
+end
+
+When 'the administrator adds me as a member' do
+  @member = build(:member)
+  log_in(@admin)
+  click_link_or_button 'Admin'
+
+  within '.rails_admin .member_links' do
+    click_link_or_button 'Members'
+  end
+
+  click_link_or_button 'Add new'
+  within '#new_member' do
+    fill_in 'First name', with: @member.first_name
+    fill_in 'Last name', with: @member.first_name
+    fill_in 'Email', with: @member.email
+
+    check 'member_approved'
+    fill_in 'Set password', with: @member.password
+    click_link_or_button 'Save'
+  end
+  expect(page).to have_text('Member successfully created')
+  click_link_or_button 'Log out'
+end
+
+When 'the administrator triggers an activation email to the new member' do
+  visit '/'
+  click_link_or_button 'Log in'
+  click_link_or_button 'Forgot your password?'
+  within '#new_member' do
+    fill_in 'Email', with: @member.email
+    click_link_or_button 'Send me reset password instructions'
+  end
+  expect(page).to have_text('You will receive an email with instructions on how to reset your password')
+end
+
+Then 'the member receives an email with instructions on how to set a password' do
+  email = MemberMailer.deliveries.last
+  expect(email.body).to have_link('Change my password')
+  @reset_password_link = email.body.match('href="(.*)"')[1]
+end
+
+Then 'the member can activate their account' do
+  uri = URI.parse(@reset_password_link)
+  visit "#{uri.path}?#{uri.query}"
+  new_password = 'changme1234'
+  # byebug
+  within '#new_member' do
+    fill_in 'New password', with: new_password
+    fill_in 'Confirm new password', with: new_password
+    click_link_or_button 'Change my password'
+  end
+  expect(page).to have_text('Your password has been changed successfully. You are now signed in')
+  click_link_or_button 'Members'
+  within 'table' do
+    expect(page).to have_text @member.last_name
+    expect(page).to have_text @member.first_name
+  end
+  click_link_or_button 'Log out'
+end
+
+def log_in(member)
+  visit '/'
+  click_link_or_button 'Log in'
+  within('#new_member') do
+    fill_in 'Email', with: member.email
+    fill_in 'Password', with: member.password
+    click_link_or_button 'Log in'
+  end
 end
