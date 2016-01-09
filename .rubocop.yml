@@ -21,3 +21,6 @@ Rails/Output:
 
 Style/Documentation:
   Enabled: false
+
+Style/AccessorMethodName:
+  Enabled: false
