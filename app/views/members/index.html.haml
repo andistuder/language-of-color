@@ -42,7 +42,7 @@
 
   %tbody
     - @members.each do |member|
-      - if member.approved? || current_member.try(:is_admin?)
+      - if member.approved?
         %tr
           %td= member.first_name
           %td= member.last_name
