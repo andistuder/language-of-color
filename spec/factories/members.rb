@@ -12,6 +12,12 @@ FactoryGirl.define do
       is_admin true
       approved true
     end
+
+    trait :approved_member do
+      approved true
+    end
+
     factory :admin, traits: [:admin]
+    factory :approved_member, traits: [:approved_member]
   end
 end

@@ -26,6 +26,17 @@ Feature: Membership
     Then the member receives an email with instructions on how to set a password
     And the member can activate their account
 
+  Scenario: Member can edit details
+    Given an approved member exists
+    When I log in
+    Then I can edit my details
+    And I can log out
+
+  Scenario: Member can cancel membership
+    Given an approved member exists
+    When I log in
+    Then I can cancel my membership
+
   Scenario: Membership index
     Given the following members exist:
       | first_name | last_name | country_of_residence | link               | approved   |

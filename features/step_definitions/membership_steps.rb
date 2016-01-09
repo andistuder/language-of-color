@@ -2,6 +2,10 @@ Given 'an administrator exists' do
   @admin = create(:admin)
 end
 
+Given 'an approved member exists' do
+  @member = create(:approved_member)
+end
+
 Given 'the following members exist:' do |table|
   @approved_members = []
   @unapproved_members = []
@@ -69,6 +73,7 @@ end
 Then 'I can log out' do
   click_link_or_button 'Log out'
   expect(page).to have_content('Signed out successfully')
+  expect(page).not_to have_text('Edit my details')
 end
 
 Then 'I can delete my account' do
@@ -158,6 +163,28 @@ Then(/^I should only see details of the approved members (exluding|including) em
     expect(page).not_to have_text(member.country_of_residence)
     expect(page).not_to have_link(member.link)
   end
+end
+
+Then 'I can edit my details' do
+  click_link_or_button 'Edit my details'
+  within '.edit_member' do
+    fill_in 'First name', with: 'Kurt'
+    fill_in 'Last name', with: 'Meyer'
+    fill_in 'Title', with: 'Dr'
+    select 'Angola', from: 'Country of residence'
+    fill_in 'Job title', with: 'Doctor'
+    fill_in 'Organisation', with: 'New company'
+    fill_in 'Email', with: 'http://new.link'
+    fill_in 'Email', with: "updated.#{@member.email}"
+    click_link_or_button 'Save'
+  end
+  expect(page).to have_text('Member was successfully updated.')
+end
+
+Then 'I can cancel my membership' do
+  click_link_or_button 'Edit my details'
+  click_link_or_button 'Terminate membership'
+  expect(page).to have_text('Membership cancelled: your data was successfully destroyed.')
 end
 
 def log_in(member)

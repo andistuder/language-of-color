@@ -4,6 +4,7 @@
   .col-lg-9
     = render 'form'
 
-= link_to 'Show', @member
-\|
-= link_to 'Back', members_path
+%p
+  = link_to 'Cancel', @member
+
+= link_to 'Terminate membership', @member, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'

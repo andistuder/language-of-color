@@ -20,3 +20,7 @@ end
 Then 'I can see the page heading "$heading"' do |heading|
   expect(find('h1')).to have_content(heading)
 end
+
+Then 'I can see the page subheading "$heading"' do |heading|
+  expect(page).to have_xpath('.//h2', text: heading)
+end

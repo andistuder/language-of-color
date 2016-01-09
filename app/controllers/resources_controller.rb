@@ -88,8 +88,4 @@ class ResourcesController < ApplicationController
       .require(:resource)
       .permit(:title, :published_at, :published, :public_download, :author, :summary, :license, :file)
   end
-
-  def authorize
-    render plain: '403 Forbidden', status: 403 unless current_member.try(:is_admin?)
-  end
 end

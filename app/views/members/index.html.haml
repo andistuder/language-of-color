@@ -29,16 +29,10 @@
     %tr
       %th First name
       %th Last name
-      / %th Title
       %th Country
-      - if current_member.present?
-        / %th Job title
-        / %th Organisation
       %th Link
       - if current_member.present?
         %th Email
-      - if current_member.try(:is_admin?)
-        %th Approved?
 
   %tbody
     - @members.each do |member|
@@ -47,9 +41,6 @@
           %td= member.first_name
           %td= member.last_name
           %td= member.country_of_residence
-          - if current_member.present?
-            / %td= member.job_title
-            / %td= member.organisation
           %td
             - if member.link.present?
               %a{href: member.link, title: member.link, target: '_blank'}
@@ -58,15 +49,3 @@
             %td
               %a{href: "mailto:#{member.email}", title: member.email, target: '_blank'}
                 %i.fa.fa-envelope-o
-          / %td= link_to 'Show', member
-          - if current_member.try(:is_admin?)
-            %td
-              - if member.approved?
-                %i.fa.fa-check
-              - else
-                = link_to 'Approve!', approve_member_path(member), :data => { :confirm => 'Approve: Are you sure?' }
-                = '/'
-                = link_to 'Destroy', member, :method => :delete, :data => { :confirm => 'Destroy: Are you sure?' }
-
-- if current_member.try(:is_admin?)
-  = link_to 'Download CSV', members_path(format: 'csv')

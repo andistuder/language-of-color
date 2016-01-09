@@ -79,8 +79,4 @@ class NewsItemsController < ApplicationController
                                       :image_caption
                                      )
   end
-
-  def authorize
-    render plain: '403 Forbidden', status: 403 unless current_member.try(:is_admin?)
-  end
 end

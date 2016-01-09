@@ -39,4 +39,8 @@ class ApplicationController < ActionController::Base
       client.user_timeline(TWITTER_NAME, count: 3) if ENV['TWITTER_ACCESS_TOKEN'].present?
     end
   end
+
+  def authorize
+    render plain: '403 Forbidden', status: 403 unless current_member.try(:is_admin?)
+  end
 end

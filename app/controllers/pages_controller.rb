@@ -18,9 +18,6 @@ class PagesController < ApplicationController
   def resources
   end
 
-  def news
-  end
-
   def disclaimner
   end
 end
