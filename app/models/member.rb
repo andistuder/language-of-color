@@ -44,7 +44,7 @@ class Member < ActiveRecord::Base
   end
 
   def send_admin_mail
-    MemberMailer.new_member_waiting_for_approval(self).deliver
+    MemberMailer.new_member_waiting_for_approval(self).deliver_now
   end
 
   # Provided for Rails Admin to allow the password to be reset
