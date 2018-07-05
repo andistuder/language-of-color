@@ -20,4 +20,7 @@ class PagesController < ApplicationController
 
   def disclaimner
   end
+
+  def privacy_statemnt
+  end
 end
