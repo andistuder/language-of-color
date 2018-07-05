@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   get 'bibliography' => 'pages#bibliography'
   get 'contact' => 'pages#contact'
   get 'disclaimer' => 'pages#disclaimer'
-  get 'privacy-statement' => 'pages#privacy_statemnt'
+  get 'privacy-statement' => 'pages#privacy_statement'
 end
