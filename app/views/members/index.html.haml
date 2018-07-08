@@ -22,7 +22,7 @@
   %li Co-operation rather than competition
   %li Attendance of SGLC meetings is open to anybody interested in this field
 
-- if current_member.present?
+- if current_member.try(:approved?) || current_member.try(:is_admin?)
   %h2.top-spaced Current Members
 
   %table.table.table-condensed.table-striped
