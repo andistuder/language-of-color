@@ -22,30 +22,31 @@
   %li Co-operation rather than competition
   %li Attendance of SGLC meetings is open to anybody interested in this field
 
-%h2.top-spaced Current Members
+- if current_member.present?
+  %h2.top-spaced Current Members
 
-%table.table.table-condensed.table-striped
-  %thead
-    %tr
-      %th First name
-      %th Last name
-      %th Country
-      %th Link
-      - if current_member.present?
-        %th Email
+  %table.table.table-condensed.table-striped
+    %thead
+      %tr
+        %th First name
+        %th Last name
+        %th Country
+        %th Link
+        - if current_member.present?
+          %th Email
 
-  %tbody
-    - @members.each do |member|
-      - if member.approved? || current_member.try(:is_admin?)
-        %tr
-          %td= member.first_name
-          %td= member.last_name
-          %td= member.country_of_residence
-          %td
-            - if member.link.present?
-              %a{href: member.link, title: member.link, target: '_blank'}
-                %i.fa.fa-link
-          - if current_member.present?
+    %tbody
+      - @members.each do |member|
+        - if member.approved? || current_member.try(:is_admin?)
+          %tr
+            %td= member.first_name
+            %td= member.last_name
+            %td= member.country_of_residence
             %td
-              %a{href: "mailto:#{member.email}", title: member.email, target: '_blank'}
-                %i.fa.fa-envelope-o
+              - if member.link.present?
+                %a{href: member.link, title: member.link, target: '_blank'}
+                  %i.fa.fa-link
+            - if current_member.present?
+              %td
+                %a{href: "mailto:#{member.email}", title: member.email, target: '_blank'}
+                  %i.fa.fa-envelope-o
