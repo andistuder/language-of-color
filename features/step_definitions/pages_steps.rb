@@ -4,8 +4,8 @@ When 'I visit the homepage' do
   visit '/'
 end
 
-When 'I visit "$path"' do |path|
-  visit path
+When 'I visit {string}' do |string|
+  visit string
 end
 
 Then 'I can see the navigation' do
@@ -19,10 +19,10 @@ Then 'I can see the navigation' do
   expect(navigation_items[5]).to have_xpath('.//a[@href="/members/sign_in"]', text: 'Log in')
 end
 
-Then 'I can see the page heading "$heading"' do |heading|
-  expect(find('h1')).to have_content(heading)
+Then 'I can see the page heading {string}' do |string|
+  expect(find('h1')).to have_content(string)
 end
 
-Then 'I can see the page subheading "$heading"' do |heading|
-  expect(page).to have_xpath('.//h2', text: heading)
+Then 'I can see the page subheading {string}' do |string|
+  expect(page).to have_xpath('.//h2', text: string)
 end

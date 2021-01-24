@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MembersController < ApplicationController
-  before_action :authorize_and_set_member, only: %i[edit update destroy]
+  before_action :authorize_and_set_member, only: %i[show edit update destroy]
 
   def index
     if ENV['MEMBERS_DISABLED'] && !current_member.try(:is_admin?)
@@ -10,6 +10,8 @@ class MembersController < ApplicationController
       set_members
     end
   end
+
+  def show; end
 
   def edit
     @member

@@ -20,8 +20,8 @@ class ApplicationController < ActionController::Base
       organisation
       link
     ]
-    devise_parameter_sanitizer.for(:sign_up).push(additional_fields)
-    devise_parameter_sanitizer.for(:account_update).push(additional_fields)
+    devise_parameter_sanitizer.permit(:sign_up, keys: additional_fields)
+    devise_parameter_sanitizer.permit(:account_update, keys: additional_fields)
   end
 
   def twitter
