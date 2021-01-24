@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 When 'I visit the homepage' do
   visit '/'
 end

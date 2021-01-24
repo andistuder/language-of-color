@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'csv'
 
 class Member < ActiveRecord::Base
@@ -10,7 +12,7 @@ class Member < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  PUBLIC_ATTRS = %w(first_name  last_name title country_of_residence  job_title organisation  link  email)
+  PUBLIC_ATTRS = %w[first_name last_name title country_of_residence job_title organisation link email].freeze
 
   def self.send_reset_password_instructions(attributes = {})
     recoverable = find_or_initialize_with_errors(reset_password_keys, attributes, :not_found)
@@ -53,7 +55,8 @@ class Member < ActiveRecord::Base
   end
 
   def set_password=(value)
-    return nil if value.blank?
+    return if value.blank?
+
     self.password = value
     self.password_confirmation = value
   end

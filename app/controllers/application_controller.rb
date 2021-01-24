@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -9,14 +11,14 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    additional_fields = [
-      :first_name,
-      :last_name,
-      :title,
-      :country_of_residence,
-      :job_title,
-      :organisation,
-      :link
+    additional_fields = %i[
+      first_name
+      last_name
+      title
+      country_of_residence
+      job_title
+      organisation
+      link
     ]
     devise_parameter_sanitizer.for(:sign_up).push(additional_fields)
     devise_parameter_sanitizer.for(:account_update).push(additional_fields)
@@ -41,6 +43,6 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize
-    render plain: '403 Forbidden', status: 403 unless current_member.try(:is_admin?)
+    render plain: '403 Forbidden', status: :forbidden unless current_member.try(:is_admin?)
   end
 end

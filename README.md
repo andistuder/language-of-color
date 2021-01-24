@@ -19,3 +19,9 @@ When changing pages, update `config/site_map.rb` and republish the sitemap:
 Start a local server with connection to the S3 production bucket:
 
 `bin/boot_with_heroku_options`
+
+## Test
+
+Run tests with
+
+`bin/rake`

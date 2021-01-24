@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class MembersController < ApplicationController
-  before_action :authorize_and_set_member, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_and_set_member, only: %i[edit update destroy]
 
   def index
     if ENV['MEMBERS_DISABLED'] && !current_member.try(:is_admin?)
@@ -30,7 +32,7 @@ class MembersController < ApplicationController
 
   def authorize_and_set_member
     @member = Member.find(params[:id])
-    render plain: '403 Forbidden', status: 403 unless current_member.id == @member.try(:id)
+    render plain: '403 Forbidden', status: :forbidden unless current_member.id == @member.try(:id)
   end
 
   def set_members
@@ -45,7 +47,6 @@ class MembersController < ApplicationController
                                    :job_title,
                                    :organisation,
                                    :link,
-                                   :email
-                                  )
+                                   :email)
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 ruby '2.6.6'
 
@@ -14,8 +16,8 @@ gem 'mail_form'
 gem 'newrelic_rpm'
 gem 'paperclip', '< 5.0'
 gem 'pg', '< 1.0'
-gem 'sitemap_generator'
 gem 'rails_admin', '~> 0.6.6'
+gem 'sitemap_generator'
 gem 'twitter'
 gem 'twitter-bootstrap-rails'
 gem 'unicorn'
@@ -30,24 +32,27 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+group :development do
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
   gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
 end
 
 group :test do
-  gem 'rspec-rails'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'factory_girl_rails'
+  gem 'rspec-rails'
 end
 
 gem 'rails_12factor', group: :production

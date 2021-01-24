@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NewsItem < ActiveRecord::Base
   default_scope { order('published_at DESC') }
 
@@ -5,5 +7,5 @@ class NewsItem < ActiveRecord::Base
     large: '940x705>'
   }
 
-  validates_attachment_content_type :article_image, content_type: %r{\Aimage\/.*\Z}
+  validates_attachment_content_type :article_image, content_type: %r{\Aimage/.*\Z}
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Given 'an administrator exists' do
   @admin = create(:admin)
 end
@@ -80,8 +82,7 @@ Then 'I can delete my account' do
   click_link_or_button 'Edit my details'
   click_link_or_button 'Cancel my membership'
   expect(page).to have_content('Bye! Your account has been successfully cancelled. '\
-                               'We hope to see you again soon.'
-                              )
+                               'We hope to see you again soon.')
 end
 
 When 'the administrator adds me as a member' do

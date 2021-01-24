@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ResourcesController < ApplicationController
-  before_action :authorize, only: [:new, :edit, :update, :destroy]
-  before_action :set_resource, only: [:show, :edit, :update, :destroy, :download]
+  before_action :authorize, only: %i[new edit update destroy]
+  before_action :set_resource, only: %i[show edit update destroy download]
 
   # GET /resources
   # GET /resources.json
@@ -11,7 +13,9 @@ class ResourcesController < ApplicationController
   # GET /resources/1
   # GET /resources/1.json
   def show
-    render(plain: '404 Not found', status: 404) && return unless @resource.published? || current_member.try(:is_admin?)
+    return if @resource.published? || current_member.try(:is_admin?)
+
+    render(plain: '404 Not found', status: :not_found) && return
   end
 
   # GET /resources/new
@@ -20,8 +24,7 @@ class ResourcesController < ApplicationController
   end
 
   # GET /resources/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /resources
   # POST /resources.json
@@ -65,11 +68,11 @@ class ResourcesController < ApplicationController
 
   def download
     unless @resource.published? || current_member.try(:is_admin?)
-      render(plain: '404 Not found', status: 404)
+      render(plain: '404 Not found', status: :not_found)
       return
     end
     unless @resource.public_download || current_member.present?
-      render(plain: '403 Forbidden - available to members only', status: 403)
+      render(plain: '403 Forbidden - available to members only', status: :forbidden)
       return
     end
     redirect_to @resource.file.expiring_url(10)

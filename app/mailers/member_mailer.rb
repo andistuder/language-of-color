@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MemberMailer < ApplicationMailer
   def new_member_waiting_for_approval(member)
     @member = member

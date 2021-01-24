@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class NewsItemsController < ApplicationController
-  before_action :authorize, only: [:new, :edit, :update, :destroy]
-  before_action :set_news_item, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, only: %i[new edit update destroy]
+  before_action :set_news_item, only: %i[show edit update destroy]
 
   # GET /news_items
   # GET /news_items.json
@@ -10,8 +12,7 @@ class NewsItemsController < ApplicationController
 
   # GET /news_items/1
   # GET /news_items/1.json
-  def show
-  end
+  def show; end
 
   # GET /news_items/new
   def new
@@ -19,8 +20,7 @@ class NewsItemsController < ApplicationController
   end
 
   # GET /news_items/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /news_items
   # POST /news_items.json
@@ -76,7 +76,6 @@ class NewsItemsController < ApplicationController
                                       :published_at,
                                       :published,
                                       :article_image,
-                                      :image_caption
-                                     )
+                                      :image_caption)
   end
 end

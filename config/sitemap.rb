@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 SitemapGenerator::Sitemap.default_host = 'http://language-of-color.aic-color.org'
 
 SitemapGenerator::Sitemap.create do

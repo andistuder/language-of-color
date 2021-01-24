@@ -1,5 +1,7 @@
+require: rubocop-rails
+
 AllCops:
-  RunRailsCops: true
+  NewCops: disable
   Exclude:
     - 'db/**/*'
     - 'bin/**/*'
@@ -7,10 +9,15 @@ AllCops:
 Metrics/AbcSize:
   Max: 20
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
   Exclude:
     - 'config/initializers/devise.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - config/environments/production.rb
+    - config/initializers/rails_admin.rb
 
 Metrics/MethodLength:
   Max: 15
@@ -22,5 +29,5 @@ Rails/Output:
 Style/Documentation:
   Enabled: false
 
-Style/AccessorMethodName:
+Naming/AccessorMethodName:
   Enabled: false

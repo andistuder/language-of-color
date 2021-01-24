@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :members
-  resources :members, only: [:index, :show, :edit, :update, :destroy] do
+  resources :members, only: %i[index show edit update destroy] do
   end
 
   resources :news_items, path: 'news'

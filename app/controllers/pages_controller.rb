@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PagesController < ApplicationController
   def home
     @news_items = NewsItem.all.where(published: true)
@@ -5,22 +7,17 @@ class PagesController < ApplicationController
     render layout: 'home'
   end
 
-  def about
-  end
+  def about; end
 
-  def bibliography
-  end
+  def bibliography; end
 
   def contact
     @contact_form = ContactForm.new
   end
 
-  def resources
-  end
+  def resources; end
 
-  def disclaimner
-  end
+  def disclaimner; end
 
-  def privacy_statement
-  end
+  def privacy_statement; end
 end
