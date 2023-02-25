@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '2.6.6'
+ruby '2.7.7'
 
 gem 'rails', '~> 4.2.5'
 
 gem 'aws-sdk', '< 2.0'
+gem 'bigdecimal', '1.4.4'
 gem 'country_select'
 gem 'dalli'
 gem 'devise'
