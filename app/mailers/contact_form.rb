@@ -11,7 +11,7 @@ class ContactForm < MailForm::Base
   def headers
     {
       subject: 'Website Contact Form',
-      to: 'language-of-color@aic-color.org',
+      to: 'sg-lc@aic-color.org',
       from: %("#{name}" <#{email}>)
     }
   end

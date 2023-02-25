@@ -10,7 +10,7 @@ class ContactFormsController < ApplicationController
       flash.now[:notice] = 'Thank you for your message!'
     else
       flash.now[:error] = 'Something went wrong and your message was not sent.'\
-                          'Please try again later or email us on language-of-color@aic-color.org'
+                          'Please try again later or email us on sg-lc@aic-color.org'
     end
     render 'pages/contact'
   end
